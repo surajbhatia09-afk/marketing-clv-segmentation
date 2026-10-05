@@ -87,11 +87,11 @@ Because the lift is assumed, the next step is a holdout experiment. Required sam
 
 | Segment | Baseline purchase rate | Per arm (purchase rate) | Per arm (spend) |
 |---|---|---|---|
-| S1 | 79.5% | 61 | 1,225 |
-| S2 | 48.2% | 420 | 1,165 |
-| S3 | 39.1% | 628 | 1,873 |
-| S4 | 13.7% | 2,683 | 6,945 |
-| S5 | 8.0% | 4,909 | 10,514 |
+| S1 | 79.5% | 61 | 1,227 |
+| S2 | 48.2% | 420 | 1,166 |
+| S3 | 39.1% | 628 | 1,875 |
+| S4 | 13.7% | 2,683 | 6,953 |
+| S5 | 8.0% | 4,909 | 10,526 |
 
 Testing on purchase rate is far cheaper than testing on spend, because spend is so skewed. S5 cannot support a two-arm test on its own: it needs 9,818 customers and the segment has 9,233. For a 10% lift in purchase rate, only S1 is large enough to test on its own; every other segment would need to be pooled.
 
@@ -99,10 +99,20 @@ Testing on purchase rate is far cheaper than testing on spend, because spend is 
 
 There is no media, channel or campaign data in this set, so this is not attribution or a marketing mix model, and nothing here measures incrementality. The lift figures are assumptions until a test is run.
 
+## Interactive app
+
+`app.py` is a Streamlit app built on the saved results in `outputs/`. It shows forecast accuracy, the segments, a targeting calculator where you set contact cost, margin and assumed lift, a test-sizing calculator, and the places the model falls short. Run it with:
+
+```
+pip install -r requirements.txt
+streamlit run app.py
+```
+
 ## Files
 
 - `clv_pipeline.py` runs everything and writes to `outputs/`
+- `app.py` is the Streamlit app (reads `outputs/customer_scores.csv` and the other saved results)
 - `outputs/metrics.json`, `model_comparison.csv`, `segment_profile.csv`, `decile_table.csv`, `targeting_scenarios.csv`, `experiment_sizing.csv`, `validation_by_frequency.csv`, `validation_by_p_alive_repeat_buyers.csv`, `customer_scores.csv`
 - `outputs/fig1` to `fig4`: calibration, cumulative gains, segments, break-even lift
 
-Dependencies: pandas, numpy, scikit-learn, lifetimes, statsmodels, scipy, matplotlib. The data ships with the `lifetimes` package.
+Dependencies: pandas, numpy, scikit-learn, lifetimes, statsmodels, scipy, matplotlib, streamlit. The data ships with the `lifetimes` package.

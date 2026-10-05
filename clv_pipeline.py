@@ -20,7 +20,7 @@ import pandas as pd
 from lifetimes import BetaGeoFitter, GammaGammaFitter
 from lifetimes import datasets as lt_datasets
 from lifetimes.utils import summary_data_from_transaction_data
-from scipy.stats import spearmanr
+from scipy.stats import norm, spearmanr
 from sklearn.cluster import KMeans
 from sklearn.ensemble import HistGradientBoostingClassifier, HistGradientBoostingRegressor
 from sklearn.metrics import adjusted_rand_score, roc_auc_score, silhouette_score
@@ -276,7 +276,8 @@ for sg, g in cust.groupby("segment"):
         es = proportion_effectsize(min(p0 * (1 + rel), 0.999), p0)
         n = pw.solve_power(effect_size=es, alpha=0.05, power=0.8, ratio=1.0, alternative="two-sided")
         row[f"n_per_arm_rate_lift_{int(rel*100)}pct"] = int(np.ceil(n))
-        n_sp = 2 * ((1.96 + 0.84) ** 2) * sd ** 2 / ((rel * mu) ** 2) if mu > 0 else np.nan
+        z_sum = norm.ppf(0.975) + norm.ppf(0.80)  # two-sided 5% significance, 80% power
+        n_sp = 2 * (z_sum ** 2) * sd ** 2 / ((rel * mu) ** 2) if mu > 0 else np.nan
         row[f"n_per_arm_spend_lift_{int(rel*100)}pct"] = int(np.ceil(n_sp)) if np.isfinite(n_sp) else None
     row["feasible_20pct_rate_test"] = bool(row["n_per_arm_rate_lift_20pct"] * 2 <= len(g))
     rows.append(row)
