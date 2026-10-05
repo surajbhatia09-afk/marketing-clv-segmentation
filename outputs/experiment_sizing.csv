@@ -1,0 +1,6 @@
+segment,name,customers,baseline_purchase_rate,n_per_arm_rate_lift_10pct,n_per_arm_spend_lift_10pct,n_per_arm_rate_lift_20pct,n_per_arm_spend_lift_20pct,feasible_20pct_rate_test
+S1,Heavy repeat / active,1612,0.7953,338,4900,61,1225,True
+S2,Mid repeat / active,2144,0.4818,1689,4659,420,1165,True
+S3,Mid repeat / cooling,3474,0.3912,2482,7489,628,1873,True
+S4,One-time / lapsed (higher spend),7039,0.1365,10337,27778,2683,6945,True
+S5,One-time / lapsed (lower spend),9233,0.08,18853,42056,4909,10514,False

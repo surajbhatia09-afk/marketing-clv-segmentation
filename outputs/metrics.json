@@ -1,0 +1,99 @@
+{
+  "raw_rows": 69659,
+  "raw_customers": 23570,
+  "zero_value_rows_dropped": 80,
+  "orders": 67511,
+  "customers": 23502,
+  "first_purchase_range": [
+    "1997-01-01",
+    "1997-11-23"
+  ],
+  "modelled_customers": 23502,
+  "holdout_days": 181,
+  "holdout_actual_orders": 12265,
+  "holdout_actual_spend": 476154.37,
+  "holdout_purchase_rate": 0.2287,
+  "one_order_share_calibration": 0.5538,
+  "bgnbd_params": {
+    "r": 0.2669,
+    "alpha": 38.0819,
+    "a": 0.4066,
+    "b": 1.3218
+  },
+  "freq_value_correlation": 0.0675,
+  "aggregate_holdout": {
+    "pred_orders": 12429.0,
+    "actual_orders": 12265,
+    "pred_spend": 494396.0,
+    "actual_spend": 476154.0,
+    "orders_error_pct": 1.3,
+    "spend_error_pct": 3.8
+  },
+  "p_alive_band_check": [
+    {
+      "alive_band": "<0.2",
+      "customers": 1162,
+      "predicted": 0.135,
+      "actual": 0.399,
+      "actual_purchase_rate": 0.192
+    },
+    {
+      "alive_band": "0.2-0.4",
+      "customers": 1967,
+      "predicted": 0.263,
+      "actual": 0.382,
+      "actual_purchase_rate": 0.225
+    },
+    {
+      "alive_band": "0.4-0.6",
+      "customers": 1733,
+      "predicted": 0.541,
+      "actual": 0.652,
+      "actual_purchase_rate": 0.339
+    },
+    {
+      "alive_band": "0.6-0.8",
+      "customers": 2861,
+      "predicted": 0.805,
+      "actual": 0.823,
+      "actual_purchase_rate": 0.426
+    },
+    {
+      "alive_band": ">0.8",
+      "customers": 2764,
+      "predicted": 2.484,
+      "actual": 2.209,
+      "actual_purchase_rate": 0.679
+    }
+  ],
+  "onetime_buyers_p_alive_is_1": true,
+  "model_comparison": [
+    {
+      "model": "BG/NBD + Gamma-Gamma",
+      "AUC_any_purchase": 0.7988,
+      "spearman_vs_actual_spend": 0.4273,
+      "top10pct_spend_capture": 0.5657
+    },
+    {
+      "model": "Gradient boosting (RFM features)",
+      "AUC_any_purchase": 0.8061,
+      "spearman_vs_actual_spend": 0.4443,
+      "top10pct_spend_capture": 0.566
+    },
+    {
+      "model": "Naive run-rate",
+      "AUC_any_purchase": 0.7932,
+      "spearman_vs_actual_spend": 0.4837,
+      "top10pct_spend_capture": 0.5316
+    }
+  ],
+  "silhouette_by_k": {
+    "3": 0.4827,
+    "4": 0.411,
+    "5": 0.4227,
+    "6": 0.4412,
+    "7": 0.4479
+  },
+  "chosen_k": 5,
+  "segment_stability_ARI": 0.9705
+}

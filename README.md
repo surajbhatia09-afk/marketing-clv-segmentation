@@ -34,6 +34,8 @@ Models are fit on orders through December 31, 1997. They are then checked agains
 
 The Spearman column favours the naive rule, which I would not read much into: 77% of customers spent nothing in the holdout, so the metric is mostly measuring ties. The reason to prefer BG/NBD here is that it has four parameters, produces a usable aggregate forecast, and can be explained to a client in a sentence. It is not that it ranks better.
 
+![Cumulative gains on the holdout window](outputs/fig2_cumulative_gains.png)
+
 **Segments.** Silhouette scores for k=4 to 7 only range from 0.41 to 0.45, so the statistics do not pick k. I chose five because a marketing team can act on five. Re-fitting with a different random seed gave nearly identical segments (adjusted Rand index 0.97).
 
 | Segment | Customers | Share of holdout spend | Bought Jan-Jun 1998 |
@@ -44,11 +46,15 @@ The Spearman column favours the naive rule, which I would not read much into: 77
 | S4 One-time / lapsed (higher spend) | 30.0% | 11.1% | 13.7% |
 | S5 One-time / lapsed (lower spend) | 39.3% | 6.0% | 8.0% |
 
+![Segment share of customers, spend and purchase rate](outputs/fig3_segments.png)
+
 ## Where the model falls short
 
 **It writes off quiet repeat buyers too early.** Among customers with at least one repeat order, those the model rated under 0.2 probability of still being active placed 0.40 orders on average in the holdout. The model had predicted 0.135. About 19% of them bought at all, against 8% for the lapsed one-time buyers. This is probably why the lowest-ranked decile behaves oddly (12.8% of it bought, against 8% in the deciles above): 64% of that decile has at least one repeat order. I did not test whether every one of them sits in the low P(alive) band. In practice, a low P(alive) should not be used as a hard "churned" flag, and this group is a reasonable win-back test.
 
 **It misses at both ends of frequency.** It under-predicts customers with one or two repeat orders (0.28 predicted vs 0.39 actual for one) and over-predicts heavy buyers (4.23 vs 3.81 for seven or more).
+
+![Predicted vs actual orders by purchase frequency](outputs/fig1_calibration_by_frequency.png)
 
 **P(alive) is mechanically 1.0 for one-time buyers.** Under BG/NBD a customer cannot drop out before a second purchase, so the metric says nothing about whether a one-time buyer is gone. I do not use it for them.
 
@@ -68,6 +74,8 @@ The useful output is the break-even lift, the relative increase in six-month spe
 | 4 | 27.6% |
 | 5 to 9 | 35% to 40% |
 | 10 | 54% |
+
+![Break-even lift by decile](outputs/fig4_breakeven_lift.png)
 
 That gives a rule that needs no hindsight: contact a decile only if you believe the campaign can beat its break-even lift. Deciles 1 and 2 clear a low bar. From decile 4 down, the campaign has to lift spend by 28% or more.
 

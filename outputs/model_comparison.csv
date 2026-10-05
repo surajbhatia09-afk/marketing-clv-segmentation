@@ -1,0 +1,4 @@
+model,AUC_any_purchase,spearman_vs_actual_spend,top10pct_spend_capture
+BG/NBD + Gamma-Gamma,0.7988,0.4273,0.5657
+Gradient boosting (RFM features),0.8061,0.4443,0.566
+Naive run-rate,0.7932,0.4837,0.5316

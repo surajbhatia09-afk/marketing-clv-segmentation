@@ -1,0 +1,6 @@
+cluster,customers,med_days_since_last,med_orders,avg_spend_cal,avg_pred_spend,avg_actual_hold_spend,hold_purchase_rate,p_alive,share_customers,share_hold_spend,name,segment
+2,1612,27.0,8.0,448.555,156.969,141.406,0.795,0.849,0.069,0.479,Heavy repeat / active,S1
+1,2144,33.0,3.0,98.918,31.635,31.347,0.482,0.809,0.091,0.141,Mid repeat / active,S2
+3,3474,161.0,3.0,152.08,26.706,28.645,0.391,0.483,0.148,0.209,Mid repeat / cooling,S3
+0,7039,304.0,1.0,56.733,5.479,7.485,0.137,0.729,0.3,0.111,One-time / lapsed (higher spend),S4
+4,9233,320.0,1.0,17.475,4.57,3.12,0.08,0.99,0.393,0.06,One-time / lapsed (lower spend),S5
